@@ -2,21 +2,12 @@ let execSync = require( "child_process" ).execSync;
 let _ = require("lodash");
 let moment = require("moment");
 
+let defaultOptions = require( "./defaultOptions.js" );
+
 
 module.exports = 
 {
-	"defaultOptions" : 
-	{
-	    "diffFilter" : "ADM",
-	    "dateFormat" :  "MMM, DD YYYY",
-	    "ignore" : 
-	    {
-	        "files" : [ "README.md", "SUMMARY.md", "book.json", "package-lock.json", "package.json", ],
-	        "exts" : [],
-	        "firstCommit" : false,
-	        "commits" : [],
-	    }
-	},
+	"defaultOptions" : defaultOptions,
 
 	"diff" : function( options )
 	{
