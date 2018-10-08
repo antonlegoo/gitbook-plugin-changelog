@@ -12,7 +12,7 @@ A plugin for Gitbook that generates a change-log page based on git history.
 }
 ```
 
-2) Create the change-log page
+2) Create a new page for your change-log. The contents of this page should look something like this:
 
 ```
 {% changelog %}
@@ -38,29 +38,20 @@ A plugin for Gitbook that generates a change-log page based on git history.
 
 This plugin takes the following options:
 
-* `diffFilter` : filters the inclusion files based their status. See the [diff-filter](https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203) argument of the `git diff` command for options.
-* `dateFormat` : formats the output of dates. See [momentjs formatting](https://momentjs.com/docs/#/displaying/format/) for formatting options.
+* `diffFilter` : (string) filters the inclusion files based their status. See the [diff-filter](https://git-scm.com/docs/git-diff#git-diff---diff-filterACDMRTUXB82308203) argument of the `git diff` command for options.
+* `dateFormat` : (string) formats the output of dates. See [momentjs formatting](https://momentjs.com/docs/#/displaying/format/) for formatting options.
 * `ignore`
-    * `files` : an array of file names to ignore
-    * `exts` : an array of file extensions to ignore
-    * `firstCommit` : ignore the very first commit in the history
-    * `commits` : an array of commit hashes to ignore, e.g ["1e3f1b8",...]
+    * `files` : (array) an array of file names to ignore (e.g `["package.json",...]`)
+    * `exts` : (array) an array of file extensions to ignore (e.g `["png","jpg"]`)
+    * `firstCommit` : (boolean) ignore the very first commit in the history
+    * `commits` : (array) an array of commit hashes to ignore (e.g `["1e3f1b8",...]`)
 
-The default options are: 
+### Default Options
 
-```
-{
-    "diffFilter" : "ADM",
-    "dateFormat" :  "MMM, DD YYYY",
-    "ignore" : 
-    {
-        "files" : [ "README.md", "SUMMARY.md", "book.json", "package-lock.json", "package.json", ],
-        "exts" : [],
-        "firstCommit" : false,
-        "commits" : [],
-    }
-}
-```
+The default options are documented in [defaultOptions.js](./defaultOptions.js).
+
+
+### Customizing Options
 
 To customize the options for your project update your `book.json`:
 ```
