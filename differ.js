@@ -54,48 +54,10 @@ module.exports =
             c.files = this.splitDiff( result, options );
             // Return
             return c;
-
-            // console.log( "!!!!!!!!!!!!!!!!\n", diffs );
-
-            // console.time("	Get Diffs");
-            // Exec
-            // let result = execSync( `git diff --diff-filter=${diffFilter} ${c1} ${c2} --numstat`, { "encoding" : "utf8" } )
-            //                 // Make it an array by breaking it by newlines
-            //                 .split("\n");
-            // console.timeEnd("	Get Diffs");
-            // console.time("		Get Files");
-            // assgin files
-            // c.files = 
-            // 	_.filter( result, (r)=> {
-            // 		// Skip nulls
-            // 		if( r.length == 0 ) return false;
-            // 		let filename = r.split("\t")[2];
-            // 		// Skip if its a filename we should ignore
-            // 		if( _.indexOf(ignoreFiles, filename) != -1 ) return false;
-            // 		let ext = filename.split(".")[1];
-            // 		// Skip if its a file extension we should ignore
-            // 		if( _.indexOf(ignoreExts, ext) >= 0 ) return false;
-            // 		// If we got this far, it deserves to be included
-            // 		return true;
-            // 	})
-            // 	.map( (r) => {
-            //     // Get the file name
-            //     let filename = r.split("\t")[2];
-            //     // Get the changes
-            //     // console.time("			Get Diff File");
-            //     // console.log( `git diff ${c1} ${c2} -- ${filename}`)
-            //     let changes = execSync( `git diff --diff-algorithm=minimal ${c1} ${c2} -- ${filename}`, { "encoding" : "utf8" } );
-            //     // console.timeEnd("			Get Diff File");
-            //     // Return
-            //     return { 	"name" : filename, 
-            //     			"binary" : this.isBinaryFile( changes ),
-            //     			"type" : this.getDiffType( changes ), 
-            //     			"changes" : this.cleanUpDiff( changes ) 
-            //     		};
-            // });
-        	// console.timeEnd("		Get Files");
-        	// console.log( `		${commits[i].message}` );
         });
+
+        // Remove any nulls
+        _.remove( commits, c => !c );
 
         // Remove the first (initial) commit
         if( options.ignore.firstCommit ) commits.shift();
